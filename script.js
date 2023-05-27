@@ -15,7 +15,7 @@ song2_status = "";
 
 function preload()
 {
-  song = loadSound("music.mp3");
+  song1 = loadSound("music.mp3");
   song2 = loadSound("music2.mp3");
 }
 
@@ -55,17 +55,24 @@ function gotPoses(results)
 
 function draw() {
     image(video, 0, 0, 600, 500);
-    song2status= song2.isPlaying();
-    song1status= song.isPlaying();
-    if (leftWristScore>0.2){
-        fill("red");
-        stroke("red");
-          circle(leftWristX, leftWristY, 25);
-          if(song2status==false){
-            song.stop();
-           song2.play();
-          }
-    }
+	song1_status = song1.isPlaying();
+	song2_status = song2.isPlaying();
+
+	fill("#FF0000");
+	stroke("#FF0000");
+
+	if(scoreRightWrist > 0.2)
+	{ 
+		circle(rightWristX,rightWristY,20);
+
+			song2.stop();
+
+		if(song1_status == false)
+		{
+			song1.play();
+			document.getElementById("song").innerHTML = "Playing - Harry Potter Theme Song"
+		}
+	}
 }
 
 function play()
